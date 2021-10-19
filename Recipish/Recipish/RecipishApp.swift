@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import RecipishModel
 
 @main
 struct RecipishApp: App {
-    let persistenceController = PersistenceController.shared
+    /// maybe for core data?
+    //let persistenceController = PersistenceController.shared
+    @StateObject var model: Model = MockModel()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            MainView()
+                .environmentObject(model)
+            
+            //ContentView()
+            //.environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
